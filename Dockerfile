@@ -6,7 +6,8 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && \
     apt-get -y upgrade && \
     apt-get -y install clang-format cloc cmake cppcheck doxygen g++ git graphviz \
-        libpcap-dev lcov mpich python-pip valgrind vim-common tzdata autoconf automake libtool perl && \
+        libpcap-dev lcov mpich python-pip qt5-default valgrind vim-common tzdata \
+        autoconf automake libtool perl && \
     apt-get -y autoremove && \
     apt-get clean all
 
