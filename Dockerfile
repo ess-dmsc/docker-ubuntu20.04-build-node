@@ -28,7 +28,7 @@ RUN conan install cmake_installer/3.10.0@conan/stable
 
 RUN git clone https://github.com/ess-dmsc/build-utils.git && \
     cd build-utils && \
-    git checkout 3643fdc0ccbcdf83d9366fa619a44a60e7df9414 && \
+    git checkout c05ed046dd273a2b9090d41048d62b7d1ea6cdf3 && \
     make install
 
 RUN adduser --disabled-password --gecos "" jenkins
