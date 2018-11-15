@@ -1,14 +1,13 @@
-[build_requires]
-cmake_installer/3.10.0@conan/stable
 [settings]
 os=Linux
 os_build=Linux
 arch=x86_64
 arch_build=x86_64
 compiler=gcc
-compiler.version=7.3
+compiler.version=6.3
 compiler.libcxx=libstdc++11
 build_type=Release
 [options]
-[scopes]
+[build_requires]
+cmake_installer/3.10.0@conan/stable
 [env]

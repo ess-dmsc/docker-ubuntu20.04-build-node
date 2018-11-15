@@ -12,7 +12,7 @@ RUN apt-get update && \
     apt-get clean all
 
 RUN pip install --force-reinstall pip==9.0.3 && \
-    pip install conan==1.3.3 coverage==4.4.2 flake8==3.5.0 gcovr==3.4 && \
+    pip install conan==1.9.1 coverage==4.4.2 flake8==3.5.0 gcovr==3.4 && \
     rm -rf /root/.cache/pip/*
 
 ENV CONAN_USER_HOME=/conan
@@ -20,7 +20,7 @@ ENV CONAN_USER_HOME=/conan
 RUN mkdir $CONAN_USER_HOME && \
     conan
 
-COPY files/registry.txt $CONAN_USER_HOME/.conan/
+COPY files/registry.json $CONAN_USER_HOME/.conan/
 
 COPY files/default_profile $CONAN_USER_HOME/.conan/profiles/default
 
