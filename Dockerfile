@@ -6,13 +6,13 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && \
     apt-get -y upgrade && \
     apt-get -y install clang-format cloc cmake cppcheck doxygen g++ git graphviz \
-        libpcap-dev lcov mpich python-pip qt5-default valgrind vim-common tzdata \
+        libpcap-dev lcov mpich python3-pip qt5-default valgrind vim-common tzdata \
         autoconf automake libtool perl && \
     apt-get -y autoremove && \
     apt-get clean all
 
-RUN pip install --force-reinstall pip==9.0.3 && \
-    pip install conan==1.12.0 coverage==4.4.2 flake8==3.5.0 gcovr==3.4 && \
+RUN pip3 install --force-reinstall pip==9.0.3 && \
+    pip3 install conan==1.12.0 coverage==4.4.2 flake8==3.5.0 gcovr==3.4 && \
     rm -rf /root/.cache/pip/*
 
 ENV CONAN_USER_HOME=/conan
