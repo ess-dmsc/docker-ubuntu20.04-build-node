@@ -12,7 +12,7 @@ RUN apt-get update && \
     apt-get clean all
 
 RUN pip3 install --force-reinstall pip==9.0.3 && \
-    pip3 install conan==1.12.0 coverage==4.4.2 flake8==3.5.0 gcovr==3.4 && \
+    pip3 install conan==1.12.0 coverage==4.4.2 flake8==3.5.0 gcovr==4.1 && \
     rm -rf /root/.cache/pip/*
 
 ENV CONAN_USER_HOME=/conan
