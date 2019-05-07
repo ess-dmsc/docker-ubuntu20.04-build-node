@@ -11,8 +11,7 @@ RUN apt-get update && \
     apt-get -y autoremove && \
     apt-get clean all
 
-RUN pip3 install --force-reinstall pip==9.0.3 && \
-    pip3 install conan==1.12.0 coverage==4.4.2 flake8==3.5.0 gcovr==4.1 && \
+RUN pip3 install conan==1.15.0 coverage==4.4.2 flake8==3.5.0 gcovr==4.1 && \
     rm -rf /root/.cache/pip/*
 
 ENV CONAN_USER_HOME=/conan
@@ -20,8 +19,7 @@ ENV CONAN_USER_HOME=/conan
 RUN mkdir $CONAN_USER_HOME && \
     conan
 
-COPY files/registry.json $CONAN_USER_HOME/.conan/
-
+COPY files/remotes.json $CONAN_USER_HOME/.conan/
 COPY files/default_profile $CONAN_USER_HOME/.conan/profiles/default
 
 RUN conan install cmake_installer/3.10.0@conan/stable
