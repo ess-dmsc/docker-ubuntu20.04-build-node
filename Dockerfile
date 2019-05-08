@@ -6,7 +6,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && \
     apt-get -y upgrade && \
     apt-get -y install clang-format cloc cmake cppcheck doxygen g++ git graphviz \
-        libpcap-dev lcov mpich python3-pip qt5-default valgrind vim-common tzdata \
+        flex lcov mpich python3-pip qt5-default valgrind vim-common tzdata \
         autoconf automake libtool perl && \
     apt-get -y autoremove && \
     apt-get clean all
@@ -21,8 +21,6 @@ RUN mkdir $CONAN_USER_HOME && \
 
 COPY files/remotes.json $CONAN_USER_HOME/.conan/
 COPY files/default_profile $CONAN_USER_HOME/.conan/profiles/default
-
-RUN conan install cmake_installer/3.10.0@conan/stable
 
 RUN git clone https://github.com/ess-dmsc/build-utils.git && \
     cd build-utils && \
