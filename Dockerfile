@@ -19,7 +19,8 @@ ENV CONAN_USER_HOME=/conan
 RUN mkdir $CONAN_USER_HOME && \
     conan
 
-COPY files/remotes.json $CONAN_USER_HOME/.conan/
+RUN conan config install http://github.com/ess-dmsc/conan-configuration.git
+    
 COPY files/default_profile $CONAN_USER_HOME/.conan/profiles/default
 
 RUN git clone https://github.com/ess-dmsc/build-utils.git && \
