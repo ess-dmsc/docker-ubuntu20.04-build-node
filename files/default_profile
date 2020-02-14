@@ -1,5 +1,6 @@
 [settings]
 os=Linux
+os.distro=Ubuntu
 os_build=Linux
 arch=x86_64
 arch_build=x86_64
