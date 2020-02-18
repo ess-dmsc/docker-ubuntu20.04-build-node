@@ -5,9 +5,9 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && \
     apt-get -y upgrade && \
-    apt-get -y install clang-format cloc cmake cppcheck doxygen gcc-8 g++-8 git graphviz \
+    apt-get -y install clang-format cloc cmake doxygen gcc-8 g++-8 git graphviz \
         flex lcov mpich python3-pip qt5-default valgrind vim-common tzdata \
-        autoconf automake libtool perl ninja-build && \
+        autoconf automake libtool perl ninja-build curl && \
     apt-get -y autoremove && \
     apt-get clean all
 
@@ -22,6 +22,16 @@ RUN mkdir $CONAN_USER_HOME && \
 RUN conan config install http://github.com/ess-dmsc/conan-configuration.git
     
 COPY files/default_profile $CONAN_USER_HOME/.conan/profiles/default
+
+RUN cd /tmp && \
+    curl -o cppcheck-1.90.tar.gz -L https://github.com/danmar/cppcheck/archive/1.90.tar.gz && \
+    tar xf cppcheck-1.90.tar.gz && \
+    cd cppcheck-1.90 && \
+    mkdir build && \
+    cmake -GNinja ../cppcheck-1.90 && \
+    ninja install && \
+    cd .. && \
+    rm -rf cppcheck-1.90*
 
 RUN git clone https://github.com/ess-dmsc/build-utils.git && \
     cd build-utils && \
