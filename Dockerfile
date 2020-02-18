@@ -7,7 +7,7 @@ RUN apt-get update && \
     apt-get -y upgrade && \
     apt-get -y install clang-format cloc cmake cppcheck doxygen gcc-8 g++-8 git graphviz \
         flex lcov mpich python3-pip qt5-default valgrind vim-common tzdata \
-        autoconf automake libtool perl && \
+        autoconf automake libtool perl ninja-build && \
     apt-get -y autoremove && \
     apt-get clean all
 
