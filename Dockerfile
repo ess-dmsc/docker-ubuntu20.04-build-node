@@ -46,5 +46,6 @@ RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-8 800 --slave /u
 RUN update-alternatives --install /usr/bin/gcov gcov /usr/bin/gcov-8 800
 
 USER jenkins
-
 WORKDIR /home/jenkins
+
+RUN python3 -m pip install --user black codecov
