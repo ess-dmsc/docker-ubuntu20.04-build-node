@@ -24,14 +24,17 @@ RUN conan config install http://github.com/ess-dmsc/conan-configuration.git
 COPY files/default_profile $CONAN_USER_HOME/.conan/profiles/default
 
 RUN cd /tmp && \
-    curl -o cppcheck-1.90.tar.gz -L https://github.com/danmar/cppcheck/archive/1.90.tar.gz && \
-    tar xf cppcheck-1.90.tar.gz && \
-    cd cppcheck-1.90 && \
+    curl -o cppcheck.tar.gz -L https://github.com/danmar/cppcheck/archive/2.0.tar.gz && \
+    tar xf cppcheck.tar.gz && \
+    cd cppcheck-2.0 && \
     mkdir build && \
-    cmake -GNinja ../cppcheck-1.90 && \
+    cd build && \
+    sed -i "s|LIST(GET VERSION_PARTS 2 VERSION_PATCH)|  |g" ../cmake/versions.cmake && \
+    cmake -GNinja .. && \
     ninja install && \
-    cd .. && \
-    rm -rf cppcheck-1.90*
+    cd ../.. && \
+    rm -rf cppcheck-2.0 && \
+    rm -rf cppcheck.tar.gz
 
 RUN git clone https://github.com/ess-dmsc/build-utils.git && \
     cd build-utils && \
