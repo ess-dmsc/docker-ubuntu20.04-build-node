@@ -5,11 +5,16 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && \
     apt-get -y upgrade && \
-    apt-get -y install clang-format cloc cmake doxygen gcc-8 g++-8 git graphviz \
+    apt-get -y install clang-format cloc doxygen gcc-8 g++-8 git graphviz \
         flex lcov mpich python3-pip qt5-default valgrind vim-common tzdata \
-        autoconf automake libtool perl ninja-build curl && \
+        autoconf automake libtool perl ninja-build curl libssl-dev && \
     apt-get -y autoremove && \
     apt-get clean all
+
+RUN curl -LO https://github.com/Kitware/CMake/releases/download/v3.17.3/cmake-3.17.3.tar.gz && \
+    tar xf cmake-3.17.3.tar.gz && \
+    cd cmake-3.17.3 && \
+    ./bootstrap && make && make install
 
 RUN pip3 install conan==1.27.0 coverage==4.4.2 flake8==3.5.0 gcovr==4.1 && \
     rm -rf /root/.cache/pip/*
