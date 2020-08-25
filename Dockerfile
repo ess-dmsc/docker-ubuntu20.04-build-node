@@ -1,11 +1,11 @@
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 
 # Prevent tzdata apt-get installation from asking for input.
 ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && \
     apt-get -y upgrade && \
-    apt-get -y install clang-format cloc doxygen gcc-8 g++-8 git graphviz \
+    apt-get -y install clang-format cloc doxygen gcc g++ git graphviz \
         flex lcov mpich python3-pip qt5-default valgrind vim-common tzdata \
         autoconf automake libtool perl ninja-build curl libssl-dev && \
     apt-get -y autoremove && \
@@ -49,9 +49,6 @@ RUN git clone https://github.com/ess-dmsc/build-utils.git && \
 RUN adduser --disabled-password --gecos "" jenkins
 
 RUN chown -R jenkins $CONAN_USER_HOME/.conan
-
-RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-8 800 --slave /usr/bin/g++ g++ /usr/bin/g++-8
-RUN update-alternatives --install /usr/bin/gcov gcov /usr/bin/gcov-8 800
 
 USER jenkins
 WORKDIR /home/jenkins
