@@ -49,6 +49,7 @@ RUN git clone https://github.com/ess-dmsc/build-utils.git && \
 RUN adduser --disabled-password --gecos "" jenkins
 
 RUN chown -R jenkins $CONAN_USER_HOME/.conan
+RUN conan config set general.revisions_enabled=True
 
 USER jenkins
 WORKDIR /home/jenkins
