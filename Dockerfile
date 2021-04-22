@@ -16,7 +16,7 @@ RUN curl -LO https://github.com/Kitware/CMake/releases/download/v3.17.3/cmake-3.
     cd cmake-3.17.3 && \
     ./bootstrap && make && make install
 
-RUN pip3 install conan==1.30.2 coverage==4.4.2 flake8==3.5.0 gcovr==4.1 && \
+RUN pip3 install conan==1.35.2 coverage==4.4.2 flake8==3.5.0 gcovr==4.1 && \
     rm -rf /root/.cache/pip/*
 
 ENV CONAN_USER_HOME=/conan
