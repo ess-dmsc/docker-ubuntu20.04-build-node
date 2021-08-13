@@ -7,7 +7,7 @@ RUN apt-get update && \
     apt-get -y upgrade && \
     apt-get -y install clang-format cloc doxygen gcc g++ git graphviz \
         flex lcov mpich python3-pip qt5-default valgrind vim-common tzdata \
-        autoconf automake libtool perl ninja-build curl libssl-dev && \
+        autoconf automake libtool perl ninja-build curl libssl-dev libreadline-dev && \
     apt-get -y autoremove && \
     apt-get clean all
 
