@@ -41,6 +41,9 @@ RUN cd /tmp && \
     rm -rf cppcheck-2.0 && \
     rm -rf cppcheck.tar.gz
 
+# Workaround for Qt issue when running with an old kernel version
+RUN strip --remove-section=.note.ABI-tag /lib/x86_64-linux-gnu/libQt5Core.so
+
 RUN git clone https://github.com/ess-dmsc/build-utils.git && \
     cd build-utils && \
     git checkout c05ed046dd273a2b9090d41048d62b7d1ea6cdf3 && \
