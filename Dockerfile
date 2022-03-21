@@ -29,16 +29,16 @@ RUN conan config install http://github.com/ess-dmsc/conan-configuration.git
 COPY files/default_profile $CONAN_USER_HOME/.conan/profiles/default
 
 RUN cd /tmp && \
-    curl -o cppcheck.tar.gz -L https://github.com/danmar/cppcheck/archive/2.0.tar.gz && \
+    curl -o cppcheck.tar.gz -L https://github.com/danmar/cppcheck/archive/2.7.tar.gz && \
     tar xf cppcheck.tar.gz && \
-    cd cppcheck-2.0 && \
+    cd cppcheck-2.7 && \
     mkdir build && \
     cd build && \
     sed -i "s|LIST(GET VERSION_PARTS 2 VERSION_PATCH)|  |g" ../cmake/versions.cmake && \
     cmake -GNinja .. && \
     ninja install && \
     cd ../.. && \
-    rm -rf cppcheck-2.0 && \
+    rm -rf cppcheck-2.7 && \
     rm -rf cppcheck.tar.gz
 
 # Workaround for Qt issue when running with an old kernel version
