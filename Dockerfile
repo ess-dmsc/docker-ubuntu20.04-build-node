@@ -14,7 +14,7 @@ RUN apt-get update && \
 RUN curl -LO https://github.com/Kitware/CMake/releases/download/v3.17.3/cmake-3.17.3.tar.gz && \
     tar xf cmake-3.17.3.tar.gz && \
     cd cmake-3.17.3 && \
-    ./bootstrap && make && make install
+    ./bootstrap && make -j8 && make install
 
 RUN pip3 install conan==1.47.0 coverage==4.4.2 flake8==3.5.0 gcovr==4.1 && \
     rm -rf /root/.cache/pip/*
@@ -39,8 +39,8 @@ RUN cd /tmp && \
     mkdir build && \
     cd build && \
     sed -i "s|LIST(GET VERSION_PARTS 2 VERSION_PATCH)|  |g" ../cmake/versions.cmake && \
-    cmake -GNinja .. && \
-    ninja install && \
+    cmake .. && \
+    make -j8 && make install && \
     cd ../.. && \
     rm -rf cppcheck-2.7 && \
     rm -rf cppcheck.tar.gz
